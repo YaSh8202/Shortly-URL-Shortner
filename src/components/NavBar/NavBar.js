@@ -7,7 +7,7 @@ const NavBar = () => {
         Shortly
       </h2>
       <nav className=" col-span-5  items-center  ">
-        <ul className=" font-body grid grid-cols-7 items-center text-grayishViolet">
+        <ul className=" grid grid-cols-7 items-center text-grayishViolet">
           <li>
             <button className="inline-block cursor-pointer hover:text-veryDarkBlue hover:font-bold">
               Features
