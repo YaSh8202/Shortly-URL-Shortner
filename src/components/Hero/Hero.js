@@ -3,12 +3,12 @@ import { HeroImage } from "../AllSvgs";
 
 const Hero = () => {
   return (
-    <div className="  w-4/5 m-auto mt-5 grid grid-cols-6 ">
+    <div className="  w-9/12 m-auto mt-5 grid grid-cols-6 ">
       <main className="flex flex-col justify-center col-span-3">
         <h1 className=" text-veryDarkBlue leading-tight font-bold text-7xl">
           More than just shorter links
         </h1>
-        <p className="text-lg w-4/5 text-gray">
+        <p className="text-lg w-4/5 text-Gray">
           Build your brand's recognition and get detailed insights on how your
           links are performing.
         </p>
