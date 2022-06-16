@@ -2,9 +2,9 @@ import React from "react";
 
 const ShortedLinks = ({ links }) => {
   return (
-    <div className="w-9/12 m-auto mt-12 ">
-      {links.map(({ url, shortedUrl }) => (
-        <div className="bg-white flex items-center px-6 py-4 shadow-lg rounded-md ">
+    <div className="w-9/12 m-auto mt-10 ">
+      {links.map(({ url, shortedUrl },index) => (
+        <div key={index} className="my-3 bg-white flex items-center px-6 py-4 shadow-lg rounded-md ">
           <div className="flex flex-1 mr-3 justify-between">
             <div className="">{url}</div>
             <a

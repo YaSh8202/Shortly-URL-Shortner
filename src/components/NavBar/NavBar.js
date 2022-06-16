@@ -11,7 +11,7 @@ const NavBar = () => {
           <li>
             <a href="/" className="inline-block cursor-pointer hover:text-veryDarkBlue">
               Features
-            </a>
+            </a>  
           </li>
           <li>
             <a href="/" className=" inline-block cursor-pointer hover:text-veryDarkBlue hover:font-bold">
