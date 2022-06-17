@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Boost from "./components/Boost/Boost";
+import Footer from "./components/Footer/Footer";
 import Hero from "./components/Hero/Hero";
 import NavBar from "./components/NavBar/NavBar";
 import ShortedLinks from "./components/Shortner/ShortedLinks";
@@ -21,6 +23,8 @@ function App() {
         <ShortnerForm onNewUrl={setShortedUrls} />
         <ShortedLinks links={shortedUrls} />
         <Stats />
+        <Boost />
+        <Footer />
       </GrayLayout>
     </>
   );
