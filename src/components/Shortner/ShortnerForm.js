@@ -10,7 +10,9 @@ const ShortnerForm = ({ onNewUrl }) => {
     const url = inputRef.current.value;
     if (url.length === 0) {
       setEmptyInput(true);
-      setTimeout(()=>{setEmptyInput(false)},3000)
+      setTimeout(() => {
+        setEmptyInput(false);
+      }, 3000);
       return;
     }
     const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}/`);
@@ -39,7 +41,9 @@ const ShortnerForm = ({ onNewUrl }) => {
         <input
           ref={inputRef}
           placeholder="Shorten a link here..."
-          className=" outline-none  rounded-md px-6 py-4 text-lg placeholder:text-gray ml-12 mr-4 inline-block flex-1 "
+          className={`${
+            emptyInput ? "outline-red/60 placeholder:text-red/60 " : ""
+          } outline-none  rounded-md px-6 py-4 text-lg placeholder:text-gray ml-12 mr-4 inline-block flex-1`}
           type="text"
         />
         <button
@@ -49,12 +53,11 @@ const ShortnerForm = ({ onNewUrl }) => {
           Shorten it!
         </button>
       </form>
-      {
-        emptyInput &&
+      {emptyInput && (
         <div className="absolute text-red text-sm -bottom-2 left-12 brightness-75 ">
           Please add a link
         </div>
-      }
+      )}
     </div>
   );
 };

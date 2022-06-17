@@ -1,7 +1,5 @@
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     colors: {
       lightGray: "#f0f1f6",
@@ -15,10 +13,14 @@ module.exports = {
       white: "#fff",
       black: "#000",
     },
-    fontFamily:{
-      'body':['"Poppins"']
-    }
-
+    fontFamily: {
+      body: ['"Poppins"'],
+    },
   },
-  plugins: [],
-}
+  plugins: [
+    function ({ addVariant }) {
+      addVariant("child", "& > *");
+      addVariant("child-hover", "& > *:hover");
+    },
+  ],
+};
