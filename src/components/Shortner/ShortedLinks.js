@@ -5,7 +5,7 @@ const ShortedLinks = ({ links }) => {
   return (
     <div className="w-9/12 m-auto mt-10 ">
       {links.map(({ url, shortedUrl }, index) => (
-        <Link url={url} shortedUrl={shortedUrl} index={index} />
+        <Link key={index} url={url} shortedUrl={shortedUrl}/>
       ))}
     </div>
   );

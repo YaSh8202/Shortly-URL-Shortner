@@ -19,7 +19,7 @@ const Boost = () => {
         <h3 className="text-white font-bold text-xl">
           Boost your links today
         </h3>
-        <button className="font-bold w-40 text-base mt-6  text-white bg-cyan rounded-full px-4 py-3 hover:opacity-70">
+        <button className="font-bold w-40 text-base mt-6  text-white bg-cyan/90 rounded-full px-4 py-3 hover:bg-cyan duration-200 ">
           Get Started
         </button>
       </div>

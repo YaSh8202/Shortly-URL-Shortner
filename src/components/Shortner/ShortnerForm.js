@@ -18,15 +18,17 @@ const ShortnerForm = ({ onNewUrl }) => {
     const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}/`);
     const data = await res.json();
     if (res.ok) {
+      inputRef.current.value = "";
       onNewUrl((prev) => {
+        
         localStorage.setItem(
           "shortedUrls",
           JSON.stringify([
-            ...prev,
             { url, shortedUrl: data.result.full_short_link },
+            ...prev,
           ])
         );
-        return [...prev, { url, shortedUrl: data.result.full_short_link }];
+        return [{ url, shortedUrl: data.result.full_short_link }, ...prev];
       });
     }
   };
@@ -48,7 +50,7 @@ const ShortnerForm = ({ onNewUrl }) => {
         />
         <button
           onClick={handleSubmit}
-          className=" bg-cyan rounded-lg px-12 py-4 font-bold text-lg hover:opacity-60 text-white hover:brightness-150 "
+          className="relative bg-cyan rounded-lg px-12 py-4 font-bold text-lg hover:opacity-90 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-white/20 text-white before:-z-10  duration-200 before:rounded-lg "
         >
           Shorten it!
         </button>
