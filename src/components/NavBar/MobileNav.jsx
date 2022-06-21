@@ -3,7 +3,7 @@ import React from "react";
 const MobileNav = (props) => {
   return (
     <div
-      className={` rounded-lg z-10 w-full py-10 m-auto absolute bg-dark_voilte flex flex-col text-white font-bold ${props.className}`}
+      className={` rounded-lg z-20 w-full py-10 m-auto absolute bg-dark_voilte flex flex-col text-white font-bold ${props.className}`}
     >
       <div className="flex flex-col items-center child:cursor-pointer gap-6 text-base border-b border-b-Gray/25 mx-8 pb-6 ">
         <p>Features</p>

@@ -9,7 +9,7 @@ const NavBar = () => {
       <h2 className="text-3xl font-bold text-veryDarkBlue mr-8 ">
         Shortly
       </h2>
-      <div>
+      <div className="lg:hidden" >
         <button onClick={()=>{setIsOpen(prev=>!prev)}} ><Menu  /></button>
       </div>
       <MobileNav className={`${isOpen?"visible":"invisible"} top-14`} />
