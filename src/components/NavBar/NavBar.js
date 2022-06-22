@@ -5,7 +5,7 @@ import MobileNav from "./MobileNav";
 const NavBar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
-    <div className=" relative lg:w-9/12 w-11/12  m-auto mt-6 flex items-center justify-between lg:justify-start">
+    <div className=" relative lg:w-9/12 w-[85%]  m-auto mt-6 flex items-center justify-between lg:justify-start">
       <h2 className="text-3xl font-bold text-veryDarkBlue mr-8 ">
         Shortly
       </h2>

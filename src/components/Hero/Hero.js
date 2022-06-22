@@ -3,7 +3,7 @@ import HeroImage from "../../images/illustration-working.svg";
 
 const Hero = () => {
   return (
-    <div className="text-center lg:text-left lg:py-20 flex w-11/12 lg:flex-row flex-col-reverse  lg:w-9/12 m-auto lg:mt-4  relative ">
+    <div className="text-center lg:text-left lg:py-20 flex w-[85%] lg:flex-row flex-col-reverse  lg:w-9/12 m-auto lg:mt-4  relative ">
       <main className="mt-12 lg:mt-2 lg:w-4/6 text-center lg:text-left flex flex-col justify-center ">
         <h1 className=" text-veryDarkBlue leading-tight font-bold text-4xl lg:text-7xl">
           More than just shorter links
