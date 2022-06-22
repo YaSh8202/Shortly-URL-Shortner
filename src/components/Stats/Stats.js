@@ -7,8 +7,8 @@ import fullyCustomizable from "../../images/icon-fully-customizable.svg";
 
 const Stats = () => {
   return (
-    <div className="w-9/12 m-auto mt-28 flex flex-col mb-28 ">
-      <div className=" text-center w-2/4 m-auto flex flex-col mb-24 ">
+    <div className="lg:w-9/12 w-[85%] m-auto mt-28 flex flex-col mb-28 ">
+      <div className=" text-center lg:w-2/4 m-auto flex flex-col mb-24 ">
         <h2 className="text-3xl font-bold mb-3 text-veryDarkBlue ">
           Advanced Statistics
         </h2>

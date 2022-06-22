@@ -23,7 +23,7 @@ export const Link = ({ url, shortedUrl }) => {
         }}
         className={`${
           isClicked ? "bg-veryDarkViolet" : "bg-cyan"
-        }  text-white lg:w-24 py-2 text-sm rounded-md font-semibold hover:opacity-80 duration-100 w-11/12 mx-auto mb-3.5   `}
+        }  text-white lg:w-24 py-2 text-sm rounded-md font-semibold hover:opacity-80 duration-100 w-[calc(100%-1.5rem)] mx-auto mb-3.5   `}
       >
         {isClicked ? "Copied!" : "Copy"}
       </button>
