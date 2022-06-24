@@ -5,7 +5,7 @@ export const Link = ({ url, shortedUrl }) => {
 
   return (
     <div className="my-4 box-border bg-white flex flex-col lg:flex-row lg:items-center items-start px-0 py-0 lg:px-6 lg:py-3 shadow-lg rounded-md ">
-      <div className="border-b-2 flex-1 border-lightGray lg:border-0 py-3.5 lg:py-0 px-3 text-sm lg:text-base w-full ">
+      <div className=" whitespace-nowrap overflow-hidden overflow-ellipsis border-b-2 flex-1 border-lightGray lg:border-0 py-3.5 lg:py-0 px-3 text-sm lg:text-base w-full ">
         {url}
       </div>
       <a
