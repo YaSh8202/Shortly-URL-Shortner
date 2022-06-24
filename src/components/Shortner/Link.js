@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const Link = ({ url, shortedUrl }) => {
+export const Link = ({ url, shortedUrl,removeLink }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   return (
@@ -27,6 +27,9 @@ export const Link = ({ url, shortedUrl }) => {
       >
         {isClicked ? "Copied!" : "Copy"}
       </button>
+      {
+        isClicked && (<button onClick={()=>{removeLink(url)}} className="bg-red/90 text-white lg:w-24 py-2 text-sm rounded-md font-semibold hover:opacity-80 hover:bg-red duration-100 w-[calc(100%-1.5rem)] mx-auto mb-3.5 lg:ml-2  " >Delete</button>)
+      }
     </div>
   );
 };

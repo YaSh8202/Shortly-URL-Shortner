@@ -15,6 +15,16 @@ function App() {
     setShortedUrls(JSON.parse(localStorage.getItem("shortedUrls")) || []);
   }, []);
 
+
+  const removeLink = (url) => {
+    const newLinks = shortedUrls.filter(link => link.url !== url);
+    setShortedUrls(newLinks);
+    localStorage.setItem(
+      "shortedUrls",
+      JSON.stringify(newLinks)
+    );
+  }
+
   return (
     <>
       
@@ -22,7 +32,7 @@ function App() {
       <Hero />
       <GrayLayout>
         <ShortnerForm onNewUrl={setShortedUrls} />
-        <ShortedLinks links={shortedUrls} />
+        <ShortedLinks links={shortedUrls} removeLink={removeLink} />
         <Stats />
         <Boost />
         <Footer />
