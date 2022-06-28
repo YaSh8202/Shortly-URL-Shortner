@@ -11,7 +11,7 @@ const Boost = () => {
         />
       ) : (
         <BoosterMobile
-          height={160}
+          height={200}
           className="absolute -z-10 w-full bg-dark_voilte "
         />
       )}
