@@ -8,4 +8,7 @@
   body{
     @apply overflow-x-hidden font-body box-border;
   }
+  #root{
+    @apply overflow-x-hidden h-screen;
+  }
 }
