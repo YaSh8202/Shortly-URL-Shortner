@@ -2,21 +2,32 @@ import React, { useRef, useState } from "react";
 import { FormBGMobile, LinkBg } from "../UI/AllSvgs";
 import toast, { Toaster } from "react-hot-toast";
 
-const ShortnerForm = ({ onNewUrl }) => {
+const ShortnerForm = ({shortedUrls, onNewUrl }) => {
   const inputRef = useRef();
   const [emptyInput, setEmptyInput] = useState(false);
+
+  const findUrl = (url)=>{
+    return shortedUrls.find(link=>link.url===url);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = inputRef.current.value;
+    const shortToast = toast.loading("Shortening your link...");
     if (url.length === 0) {
       setEmptyInput(true);
       setTimeout(() => {
         setEmptyInput(false);
       }, 3000);
+      toast.error("Please enter a valid URL", { id: shortToast });
       return;
     }
-    const shortToast = toast.loading("Shortening your link...");
+    if(findUrl(url)){
+      toast.error("This link has already been shortened", { id: shortToast });
+      return ;
+    }
+
+    
     const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}/`);
     const data = await res.json();
     if (res.ok) {
@@ -31,8 +42,12 @@ const ShortnerForm = ({ onNewUrl }) => {
         );
         return [{ url, shortedUrl: data.result.full_short_link }, ...prev];
       });
+
+      toast.success("Your link has been shortened!", { id: shortToast }); 
     }
-    toast.success("Your link has been shortened!", { id: shortToast });
+    else{
+      toast.error("link can't be shortened", { id: shortToast });
+    }
   };
 
   return (

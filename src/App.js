@@ -31,7 +31,7 @@ function App() {
       <NavBar />
       <Hero />
       <GrayLayout>
-        <ShortnerForm onNewUrl={setShortedUrls} />
+        <ShortnerForm shortedUrls={shortedUrls} onNewUrl={setShortedUrls} />
         <ShortedLinks links={shortedUrls} removeLink={removeLink} />
         <Stats />
         <Boost />
