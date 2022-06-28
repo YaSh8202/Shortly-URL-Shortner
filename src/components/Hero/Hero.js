@@ -12,9 +12,9 @@ const Hero = () => {
           Build your brand's recognition and get detailed insights on how your
           links are performing.
         </p>
-        <button className="m-auto lg:mx-0 font-bold w-40 text-base mt-6 text-white bg-cyan rounded-full px-6 py-3 hover:opacity-60">
+        <a href="#layout" className="m-auto text-center lg:mx-0 font-bold w-40 text-base mt-6 text-white bg-cyan rounded-full px-6 py-3 hover:opacity-60">
           Get Started
-        </button>
+        </a>
       </main>
       <div className=" lg:absolute relative z-10 -right-[6%] lg:-right-[30%] top-5 lg:top-10 ">
         <img className=" max-w-none w-[135%] h-[135%]  lg:w-[90%] " src={HeroImage} alt="" />

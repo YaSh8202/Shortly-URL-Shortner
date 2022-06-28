@@ -4,6 +4,7 @@ import { FormBGMobile, LinkBg } from "../UI/AllSvgs";
 const ShortnerForm = ({ onNewUrl }) => {
   const inputRef = useRef();
   const [emptyInput, setEmptyInput] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,6 +16,7 @@ const ShortnerForm = ({ onNewUrl }) => {
       }, 3000);
       return;
     }
+    setIsLoading(true);
     const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}/`);
     const data = await res.json();
     if (res.ok) {
@@ -30,10 +32,11 @@ const ShortnerForm = ({ onNewUrl }) => {
         return [{ url, shortedUrl: data.result.full_short_link }, ...prev];
       });
     }
+    setIsLoading(false);
   };
 
   return (
-    <div className="py-8  md:py-7 flex md:items-center h-4/5 mt-12 m-auto w-[85%]  lg:w-9/12 relative">
+    <div className="py-8  md:py-7 flex md:items-center h-4/5 mt-0 lg:mt-14 m-auto w-[85%]  lg:w-9/12 relative">
       <LinkBg
         height={145}
         className="md:block hidden rounded-lg absolute -z-10 w-full bg-dark_voilte "
@@ -52,11 +55,11 @@ const ShortnerForm = ({ onNewUrl }) => {
           type="text"
         />
         <button
-        style={{"margin-left": 0}}
+          style={{ "margin-left": 0 }}
           onClick={handleSubmit}
           className="relative bg-cyan rounded-lg md:px-12 md:py-4 px-8 py-3 font-bold text-lg hover:opacity-90 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-white/20 text-white before:-z-10  duration-200 before:rounded-lg "
         >
-          Shorten it!
+          {`${isLoading ? "Shortening..." : "Shorten it"}`}
         </button>
       </form>
       {emptyInput && (
