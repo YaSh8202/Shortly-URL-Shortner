@@ -71,7 +71,7 @@ const NavBar = () => {
                 width={40}
                 height={40}
               />
-              <p className=" text-gray-600 font-normal ">
+              <p className="  text-gray-600 font-semibold ">
                 Hello, {userProfile.userName}
               </p>
               <button
