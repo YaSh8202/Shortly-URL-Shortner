@@ -2,22 +2,8 @@ import React from "react";
 import { Menu } from "../UI/AllSvgs";
 import MobileNav from "./MobileNav";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
-import jwtDecode from "jwt-decode";
 import useAuthStore from "../../store/authStore";
-
-async function createOrGetUser(response, addUser) {
-  const decoded = jwtDecode(response.credential);
-
-  const { name, picture, sub } = decoded;
-  console.log(decoded);
-  const user = {
-    _id: sub,
-    userName: name,
-    image: picture,
-  };
-
-  addUser(user);
-}
+import createOrGetUser from "../../util/auth";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
