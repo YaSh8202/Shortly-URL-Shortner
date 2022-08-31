@@ -18,7 +18,7 @@ const Stats = () => {
         </p>
       </div>
       <div className="flex gap-7 relative lg:flex-row flex-col ">
-        <div className="-z-10 lg:left-12 lg:top-36 absolute m-auto bg-cyan  lg:w-4/6 lg:h-2 h-full w-2 left-[50%] lg:translate-x-[-50%] "></div>
+        <div className="-z-10 lg:left-12 lg:top-36 absolute m-auto bg-cyan  lg:w-4/6 lg:h-2 h-full w-2 left-[50%] translate-x-[-50%] lg:translate-x-0 "></div>
         <Stat
           icon={brandRecognition}
           heading="Brand Recognition"
