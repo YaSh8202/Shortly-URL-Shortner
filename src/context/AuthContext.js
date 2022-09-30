@@ -13,13 +13,11 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
-  console.log(user);
   useEffect(() => {
     setLoading(true);
     const unsub = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
-        console.log(user);
       } else {
         console.log("no user");
       }
@@ -37,7 +35,6 @@ export const AuthContextProvider = ({ children }) => {
       setUser(user);
       const signedInForFirstTime =
         user.metadata.creationTime === user.metadata.lastSignInTime;
-      console.log("first time", user.metadata.creationTime);
       if (signedInForFirstTime) {
         await setDoc(doc(db, "shortedUrls", user.uid), {
           urls: [],

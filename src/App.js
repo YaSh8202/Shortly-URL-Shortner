@@ -14,13 +14,11 @@ import { db } from "./firebase";
 function App() {
   const [shortedUrls, setShortedUrls] = useState([]);
   const { user } = UserAuth();
-  console.log("app user", user);
   useEffect(() => {
     const getUrls = () => {
       if (!user?.uid) return;
       const unsub = onSnapshot(doc(db, "shortedUrls", user.uid), (doc) => {
         setShortedUrls(doc.data().urls);
-        console.log(doc.data().urls);
       });
       return () => {
         unsub();
@@ -30,7 +28,6 @@ function App() {
   }, [user]);
 
   const removeLink = async (url) => {
-    console.log(url);
     try {
       await updateDoc(doc(db, "shortedUrls", user.uid), {
         urls: arrayRemove({ ...url }),
