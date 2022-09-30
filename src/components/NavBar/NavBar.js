@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
 import { Menu } from "../UI/AllSvgs";
 import MobileNav from "./MobileNav";
-import AuthContext, { UserAuth } from "../../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 import GoogleButton from "react-google-button";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  // const { googleSignIn, user, logOut } = UserAuth();
   const { googleSignIn, user, logOut, loading } = useContext(AuthContext);
 
   const handleGoogleSignIn = async () => {
