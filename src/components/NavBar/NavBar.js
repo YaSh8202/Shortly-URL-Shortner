@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Menu } from "../UI/AllSvgs";
 import MobileNav from "./MobileNav";
 import AuthContext from "../../context/AuthContext";
-import GoogleButton from "react-google-button";
+import GoogleButton from "./GoogleButton";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -30,6 +30,7 @@ const NavBar = () => {
         </button>
       </div>
       <MobileNav
+        setIsOpen={setIsOpen}
         user={user}
         handleGoogleSignIn={handleGoogleSignIn}
         logOut={logOut}
@@ -89,7 +90,7 @@ const NavBar = () => {
           ) : loading ? (
             <></>
           ) : (
-            <GoogleButton onClick={handleGoogleSignIn} />
+            <GoogleButton handleGoogleSignIn={handleGoogleSignIn} />
           )}
         </div>
       </nav>

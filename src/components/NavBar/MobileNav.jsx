@@ -1,7 +1,13 @@
 import React from "react";
-import GoogleButton from "react-google-button";
+import GoogleButton from "./GoogleButton";
 
-const MobileNav = ({ user, handleGoogleSignIn, logOut, className }) => {
+const MobileNav = ({
+  setIsOpen,
+  user,
+  handleGoogleSignIn,
+  logOut,
+  className,
+}) => {
   return (
     <div
       className={` rounded-lg z-20 w-full py-10 m-auto absolute bg-dark_voilte flex flex-col text-white font-bold ${className}`}
@@ -34,7 +40,12 @@ const MobileNav = ({ user, handleGoogleSignIn, logOut, className }) => {
             </button>
           </>
         ) : (
-          <GoogleButton onClick={handleGoogleSignIn} />
+          <GoogleButton
+            handleGoogleSignIn={() => {
+              handleGoogleSignIn();
+              setIsOpen(false);
+            }}
+          />
         )}
       </div>
     </div>
