@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Menu } from "../UI/AllSvgs";
 import MobileNav from "./MobileNav";
-import { GoogleLogin, googleLogout } from "@react-oauth/google";
-import useAuthStore from "../../store/authStore";
-import createOrGetUser from "../../util/auth";
+import AuthContext, { UserAuth } from "../../context/AuthContext";
+import GoogleButton from "react-google-button";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const { userProfile, addUser, removeUser } = useAuthStore();
+
+  // const { googleSignIn, user, logOut } = UserAuth();
+  const { googleSignIn, user, logOut, loading } = useContext(AuthContext);
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className=" relative lg:w-9/12 w-[85%]  m-auto mt-6 flex items-center justify-between lg:justify-start">
@@ -21,7 +30,12 @@ const NavBar = () => {
           <Menu />
         </button>
       </div>
-      <MobileNav className={`${isOpen ? "visible" : "invisible"} top-14`} />
+      <MobileNav
+        user={user}
+        handleGoogleSignIn={handleGoogleSignIn}
+        logOut={logOut}
+        className={`${isOpen ? "visible" : "invisible"} top-14`}
+      />
       <nav className="hidden lg:flex text-sm font-bold  flex-1 justify-between  items-center container ">
         <div>
           <ul className="flex gap-6 items-center text-grayishViolet">
@@ -52,43 +66,31 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="flex items-center font-bold text-sm text-right col-span-2 gap-6">
-          {/* <a
-            href="/"
-            className="cursor-pointer w-10 hover:text-veryDarkBlue hover:font-bold text-grayishViolet"
-          >
-            Login
-          </a>
-          <button className="font-bold text-white bg-cyan text-xs rounded-full px-4 py-2 hover:opacity-70 ">
-            Sign Up
-          </button> */}
-
-          {userProfile ? (
+          {user ? (
             <>
               <img
                 className="rounded-full cursor-pointer "
                 alt="profile"
-                src={userProfile.image}
+                src={user.photoURL}
                 width={40}
                 height={40}
               />
               <p className="  text-gray-600 font-semibold ">
-                Hello, {userProfile.userName}
+                Hello, {user.displayName}
               </p>
               <button
                 onClick={() => {
-                  googleLogout();
-                  removeUser();
+                  logOut();
                 }}
                 className="cursor-pointer w-10 hover:text-veryDarkBlue hover:font-bold text-grayishViolet"
               >
                 Logout
               </button>
             </>
+          ) : loading ? (
+            <></>
           ) : (
-            <GoogleLogin
-              onSuccess={(response) => createOrGetUser(response, addUser)}
-              onError={() => console.log("error")}
-            ></GoogleLogin>
+            <GoogleButton onClick={handleGoogleSignIn} />
           )}
         </div>
       </nav>

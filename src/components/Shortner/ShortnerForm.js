@@ -1,14 +1,18 @@
 import React, { useRef, useState } from "react";
 import { FormBGMobile, LinkBg } from "../UI/AllSvgs";
 import toast, { Toaster } from "react-hot-toast";
+import { UserAuth } from "../../context/AuthContext";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
-const ShortnerForm = ({shortedUrls, onNewUrl }) => {
+const ShortnerForm = ({ shortedUrls, onNewUrl }) => {
   const inputRef = useRef();
   const [emptyInput, setEmptyInput] = useState(false);
+  const { user } = UserAuth();
 
-  const findUrl = (url)=>{
-    return shortedUrls.find(link=>link.url===url);
-  }
+  const findUrl = (url) => {
+    return shortedUrls.find((link) => link.url === url);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,12 +26,11 @@ const ShortnerForm = ({shortedUrls, onNewUrl }) => {
       toast.error("Please enter a valid URL", { id: shortToast });
       return;
     }
-    if(findUrl(url)){
+    if (findUrl(url)) {
       toast.error("This link has already been shortened", { id: shortToast });
-      return ;
+      return;
     }
 
-    
     const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}/`);
     const data = await res.json();
     if (res.ok) {
@@ -43,9 +46,14 @@ const ShortnerForm = ({shortedUrls, onNewUrl }) => {
         return [{ url, shortedUrl: data.result.full_short_link }, ...prev];
       });
 
-      toast.success("Your link has been shortened!", { id: shortToast }); 
-    }
-    else{
+      toast.success("Your link has been shortened!", { id: shortToast });
+      await updateDoc(doc(db, "shortedUrls", user.uid), {
+        urls: arrayUnion({
+          url: url,
+          shortedUrl: data.result.full_short_link,
+        }),
+      });
+    } else {
       toast.error("link can't be shortened", { id: shortToast });
     }
   };
@@ -63,14 +71,18 @@ const ShortnerForm = ({shortedUrls, onNewUrl }) => {
       />
       <form className=" h-8 mt-7 mb-12 md:mt-0 md:mb-0 md:w-full m-auto md:mx-0 w-[85%] md:pr-12 flex md:flex-row flex-col  md:items-center space-x-2  ">
         <input
+          disabled={!user}
           ref={inputRef}
-          placeholder="Shorten a link here..."
+          placeholder={`${
+            user ? "Shorten a link here..." : "Sign in to shorten a link"
+          }`}
           className={`${
             emptyInput ? "outline-red/60 placeholder:text-red/60 " : ""
-          } outline-none rounded-md py-3 px-3 md:px-6 md:py-4 text-base md:text-lg placeholder:text-gray md:ml-12 md:mr-4 inline-block flex-1 mb-6 md:mb-0 `}
+          } outline-none rounded-md py-3 px-3 md:px-6 md:py-4 text-base md:text-lg placeholder:text-gray md:ml-12 md:mr-4 inline-block flex-1 mb-6 md:mb-0  disabled:bg-gray-200 `}
           type="text"
         />
         <button
+          disabled={!user}
           style={{ marginLeft: 0 }}
           onClick={handleSubmit}
           className="relative bg-cyan rounded-lg md:px-12 md:py-4 px-8 py-3 font-bold text-lg hover:opacity-90 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-white/20 text-white before:-z-10  duration-200 before:rounded-lg "
