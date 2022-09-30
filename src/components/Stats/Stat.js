@@ -6,7 +6,7 @@ const Stat = (props) => {
       className={` rounded-md flex flex-col bg-white p-8 pt-20 relative ${props.className}`}
     >
       <img
-        className=" brightness-90 text-center absolute w-20 p-3 -top-8 bg-veryDarkViolet rounded-full object-none left-28 md:left-[calc(50%-10px)] lg:left-8  "
+        className=" brightness-90 text-center absolute w-20 p-3 -top-8 bg-veryDarkViolet rounded-full object-none left-[50%] translate-x-[-50%] lg:left-8  "
         src={props.icon}
         alt=""
       />
