@@ -33,7 +33,7 @@ export const Link = forwardRef((props, ref) => {
       {isClicked && (
         <button
           onClick={() => {
-            removeLink(url);
+            removeLink({ url, shortedUrl });
           }}
           className="bg-red/90 text-white lg:w-24 py-2 text-sm rounded-md font-semibold lg:mb-0 hover:opacity-80 hover:bg-red duration-100 w-[calc(100%-1.5rem)] mx-auto mb-3.5 lg:ml-2  "
         >
